@@ -33,7 +33,7 @@ public class Api {
             
             Main.contents = content.toString();
             System.out.println(content);
-            File.files();
+            Files.files();
             return content.toString();
         } catch (final Exception ex) {
             ex.printStackTrace();

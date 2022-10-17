@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import org.json.simple.parser.ParseException;
 
-public class File {
+public class Files {
 	public static void files() throws IOException, ParseException {
         Scanner scanner = new Scanner(Main.file);
         PrintWriter writer = new PrintWriter(Main.jsonfile);
@@ -15,7 +15,6 @@ public class File {
             for (int i = 0; i < line.length(); i++){
                 if (line.charAt(i) != '[' && line.charAt(i) != ']') {
                     newLine += line.charAt(i);
-                    System.out.println(newLine);
                 }
             }
             writer.println(newLine);
