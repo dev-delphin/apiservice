@@ -8,7 +8,7 @@ import java.net.URL;
 
 public class Api {
 
-	public static String api (int CONNECTION_TIMEOUT) throws IOException {
+	public static void api (int CONNECTION_TIMEOUT) throws IOException {
 
 		final URL url = new URL("https://api.blockchain.com/v3/exchange/tickers");
         final HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -32,12 +32,11 @@ public class Api {
             } 
             
             Main.contents = content.toString();
-            System.out.println(content);
-            Files.files();
-            return content.toString();
+            Json.json(content);
+            //return content.toString();
         } catch (final Exception ex) {
             ex.printStackTrace();
-            return "";
+            //return "";
         }
 	}
 }
