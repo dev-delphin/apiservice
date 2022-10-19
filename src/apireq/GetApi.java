@@ -5,12 +5,10 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class Api {
+public class GetApi {
 
 	public static void api (int CONNECTION_TIMEOUT) throws IOException {
-
-		final URL url = new URL("https://api.blockchain.com/v3/exchange/tickers");
-        final HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        final HttpURLConnection con = (HttpURLConnection) new URL(Main.URL).openConnection();
         
         con.setRequestMethod("GET");
         con.setRequestProperty("Content-Type", "application/json");
@@ -23,7 +21,7 @@ public class Api {
             while ((inputLine = in.readLine()) != null) {
                 content.append(inputLine);
             }
-            Json.json(content);
+            DBquery.json(content);
         } catch (final Exception ex) {
             ex.printStackTrace();
         }
