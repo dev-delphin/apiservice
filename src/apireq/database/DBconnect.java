@@ -1,4 +1,4 @@
-package apireq;
+package apireq.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

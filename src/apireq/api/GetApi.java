@@ -1,14 +1,17 @@
-package apireq;
+package apireq.api;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-public class GetApi {
+import apireq.database.dbqery.DBpush;
+
+public class GetApi{
 
 	public static void api (int CONNECTION_TIMEOUT) throws IOException {
-        final HttpURLConnection con = (HttpURLConnection) new URL(Main.URL).openConnection();
+		System.out.println("started");
+        final HttpURLConnection con = (HttpURLConnection) new URL(apireq.Main.URL).openConnection();
         
         con.setRequestMethod("GET");
         con.setRequestProperty("Content-Type", "application/json");
@@ -21,7 +24,7 @@ public class GetApi {
             while ((inputLine = in.readLine()) != null) {
                 content.append(inputLine);
             }
-            DBquery.json(content);
+            DBpush.json(content);
         } catch (final Exception ex) {
             ex.printStackTrace();
         }

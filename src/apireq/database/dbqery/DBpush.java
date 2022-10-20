@@ -1,4 +1,4 @@
-package apireq;
+package apireq.database.dbqery;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.Connection;
@@ -10,9 +10,12 @@ import java.sql.SQLException;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import apireq.database.DBconnect;
+
 import org.json.simple.JSONArray;
 
-public class DBquery{
+public class DBpush{
 	
 	public static void json(StringBuilder content) throws FileNotFoundException, IOException, ParseException, SQLException {
 		JSONArray jsonArray = (JSONArray) new JSONParser().parse(content.toString());
