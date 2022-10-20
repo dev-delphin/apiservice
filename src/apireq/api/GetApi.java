@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import apireq.database.DBpush;
+import apireq.database.DBpost;
 
 public class GetApi{
 
@@ -23,7 +23,7 @@ public class GetApi{
             while ((inputLine = in.readLine()) != null) {
                 content.append(inputLine);
             }
-            DBpush.json(content);
+            DBpost.json(content);
         } catch (final Exception ex) {
             ex.printStackTrace();
         }

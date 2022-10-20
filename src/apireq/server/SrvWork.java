@@ -1,12 +1,8 @@
 package apireq.server;
 
 import java.io.IOException;
-//import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-/*import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
-import com.sun.net.httpserver.HttpServer;*/
 
 import apireq.api.GetApi;
 
@@ -35,22 +31,16 @@ public class SrvWork{
 		});
 		run.start();;
 		
-		//ReqApi.ThreadApi();
-		
 		ServerSocket ss = new ServerSocket(apireq.Main.PORT);
         while (true) {
             Socket s = ss.accept();
             System.err.println("Client accepted");
             try {
 				new Thread(new SocketProcessor(s)).start();
-				
 			} catch (Throwable e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
         }
-		
-		
-
 	}
 }

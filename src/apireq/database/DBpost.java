@@ -10,7 +10,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.json.simple.JSONArray;
 
-public class DBpush{
+public class DBpost{
 	
 	public static void json(StringBuilder content) throws FileNotFoundException, IOException, ParseException, SQLException {
 		JSONArray jsonArray = (JSONArray) new JSONParser().parse(content.toString());

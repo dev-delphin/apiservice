@@ -1,10 +1,16 @@
 package apireq.server;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.sql.SQLException;
+
+import apireq.database.DBget;
 
 class SocketProcessor implements Runnable {
 
@@ -19,9 +25,47 @@ class SocketProcessor implements Runnable {
     }
 
     public void run() {
+    	
+    	
+    	try {
+			DBget.getJson();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	
+        String str = "";
+        BufferedReader buffReader; 
+        FileReader fr;
+		try {
+			fr = new FileReader("./tmp.json");
+			buffReader = new BufferedReader(fr);
+			while (buffReader.ready()) {
+	              str += buffReader.readLine();
+	        }
+			fr.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+   
+		
+		
+          
         try {
             readInputHeaders();
-            writeResponse("<html><body><h1>Hello from Habrahabr</h1></body></html>");
+            writeResponse(str);
+            
         } catch (Throwable t) {
             /*do nothing*/
         } finally {
