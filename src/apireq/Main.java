@@ -14,7 +14,6 @@ public class Main {
 	
 
 	public static void main(String[] args) throws IOException {
-		//GetApi.api(CONNECTION_TIMEOUT);
 		SrvWork.http();
 	}
 
