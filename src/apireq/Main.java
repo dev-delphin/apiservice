@@ -1,7 +1,5 @@
 package apireq;
 import java.io.IOException;
-
-//import apireq.api.GetApi;
 import apireq.server.SrvWork;
 
 public class Main {

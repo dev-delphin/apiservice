@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
-
 import com.sun.net.httpserver.HttpServer;
+import apireq.api.GetApi;
 
 public class SrvWork {
 	
@@ -22,7 +22,7 @@ public class SrvWork {
 			public void run() {
 				while(true){
 					try {
-						apireq.api.GetApi.api(apireq.Main.CONNECTION_TIMEOUT);
+						GetApi.api(apireq.Main.CONNECTION_TIMEOUT);
 						Thread.sleep(apireq.Main.WAITING_TIME*1000);
 					} catch (IOException ex) {} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
