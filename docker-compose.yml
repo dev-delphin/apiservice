@@ -1,0 +1,28 @@
+version: '3'
+
+networks:
+  api.net:
+  driver: bridge
+
+services:
+  java_service:
+    build: .
+    container_name: api_srv
+    ports:
+      - "8080:80"
+    environment:
+      - APP_PORT=80
+      - APP_ADDR=
+      - APP_CLI_TTL=15000
+      - APP_TIME_UPDATE=30 # TODO: change to crone
+      - APP_LOG_LEVEL=0 # Trace|Debug|Error|Warn|Info
+      - APP_THREADS_POOL=10
+      - APP_HOSTNAME=localhost
+    networks:
+      - api.net
+
+  # postgres:
+  #   image: postgres:alpine3.16
+  #   container_name: api_db
+  #   networks:
+  #     - api.net
