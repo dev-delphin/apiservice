@@ -12,7 +12,7 @@ ELSE
 END IF;
 
 
-\c api
+-- \c api
 
 CREATE TABLE req(
  id SERIAL PRIMARY KEY NOT NULL,
