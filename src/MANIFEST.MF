@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Created-By: 1.0
+Package-Name: apireq
+Main-Class: apireq.Main
+Name: apireq
+Sealed: true

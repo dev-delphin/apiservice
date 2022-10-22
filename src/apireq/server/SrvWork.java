@@ -9,12 +9,6 @@ import apireq.api.GetApi;
 public class SrvWork{
 	
 	public static void http() throws IOException {
-		/*HttpServer server = HttpServer.create (new InetSocketAddress(apireq.Main.HOSTNAME, apireq.Main.PORT), apireq.Main.BACKLOG);
-		server.setExecutor((ThreadPoolExecutor)Executors.newFixedThreadPool(apireq.Main.THREAD_POOL));
-		System.out.println(" Server started on port " + apireq.Main.PORT);
-		server.start();
-		*/
-		
 		Thread run = new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -29,7 +23,7 @@ public class SrvWork{
 				}
 			}
 		});
-		run.start();;
+		run.start();
 		
 		ServerSocket ss = new ServerSocket(apireq.Main.PORT);
         while (true) {
