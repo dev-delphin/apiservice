@@ -8,9 +8,9 @@ import apireq.database.DBpost;
 
 public class GetApi{
 
-	public static void api (int CONNECTION_TIMEOUT) throws IOException {
+	public static void api (int CONNECTION_TIMEOUT, String url) throws IOException {
 		System.out.println("started");
-        final HttpURLConnection con = (HttpURLConnection) new URL(apireq.Main.URL).openConnection();
+        final HttpURLConnection con = (HttpURLConnection) new URL(url).openConnection();
         
         con.setRequestMethod("GET");
         con.setRequestProperty("Content-Type", "application/json");

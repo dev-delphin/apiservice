@@ -2,8 +2,8 @@
 FROM openjdk:20-ea-20-jdk AS builder
 WORKDIR /src
 COPY ./src .
-RUN javac ./apireq/*.java
-RUN jar cvf ./api_service.jar ./apireq/*.class
+RUN javac ./apireq/Main.java
+RUN jar cvf ./api_service.jar ./apireq/*.class ./apireq/storage/*.class ./apireq/storage/**/*.class
 RUN jar uvfm ./api_service.jar ./MANIFEST.MF
 
 #Runner

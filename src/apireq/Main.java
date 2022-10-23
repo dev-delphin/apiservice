@@ -1,18 +1,22 @@
 package apireq;
 import java.io.IOException;
 import java.util.Map;
-import apireq.server.SrvWork;
+// import apireq.server.SrvWork;
+import apireq.storage.storage;
+import apireq.storage.postgres.postgres;
+import apireq.storage.test_store.test_store;
 
 public class Main {
 	
 	// TODO: move change config to ENV or config file.
-	public static int CONNECTION_TIMEOUT; // = 15000;
-	public static String URL; // = "https://api.blockchain.com/v3/exchange/tickers";
-	public static int WAITING_TIME; // = 30;
-	public static String HOSTNAME; // = "localhost";
-	public static int PORT; // = 8081;
-	public static int BACKLOG; // = 0; 
-	public static int THREAD_POOL; // = 10;
+	private int CONNECTION_TIMEOUT; // = 15000;
+	private String URL; // = "https://api.blockchain.com/v3/exchange/tickers";
+	private int WAITING_TIME; // = 30;
+	private String HOSTNAME; // = "localhost";
+	private int PORT; // = 8081;
+	private int BACKLOG; // = 0; 
+	private int THREAD_POOL; // = 10;
+	private String TEST;
 
 	public Main() {
 		CONNECTION_TIMEOUT = 15000;
@@ -22,6 +26,28 @@ public class Main {
 		PORT = 8080;
 		BACKLOG = 0; 
 		THREAD_POOL = 10;
+		TEST = "no";
+	}
+
+	public boolean Test() {
+		System.out.format("Test state is - %s %b\n",  this.TEST, this.TEST.equals("yes"));
+		return this.TEST.equals("yes");
+	}
+
+	public int GetPort() {
+		return this.PORT;
+	}
+
+	public int GetConnectionTimeout() {
+		return this.CONNECTION_TIMEOUT;
+	}
+
+	public int GetWaiteTime() {
+		return this.WAITING_TIME;
+	}
+
+	public String GetURL() {
+		return this.URL;
 	}
 
 	public int PortValidator(int port) {
@@ -39,6 +65,7 @@ public class Main {
 		BACKLOG = Integer.parseInt(env.get("APP_LOG_LEVEL"));
 		THREAD_POOL = Integer.parseInt(env.get("APP_THREADS_POOL"));
 		HOSTNAME = env.get("APP_ADDR");
+		TEST = env.get("APP_TEST").trim();
 
 		System.out.println("Service configs:");
 		System.out.format("\tPort server - %d\n", PORT);
@@ -48,12 +75,30 @@ public class Main {
 		System.out.format("\tTrace level - %d\n", BACKLOG);
 		System.out.format("\tThreads pool units - %d\n", THREAD_POOL);
 		System.out.format("\tAddress server - %s\n", HOSTNAME);
+		System.out.format("\tTest - %s\n", TEST);
 	}
 	
 	public static void main(String[] args) throws IOException {
 		Main myObj = new Main();
 		myObj.SetConfig(System.getenv());
-		SrvWork.http();
+
+		postgres db = new postgres();
+		test_store t = new test_store();
+
+		storage store;
+
+		if (myObj.Test()) {
+			// injection test
+			store = new storage(t);
+		} else {
+			// injection Postgres
+			store = new storage(db);
+		}
+
+		store.SaveUserName("Petr");
+
+
+		// SrvWork.http();
 	}
 
 }

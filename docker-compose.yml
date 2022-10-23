@@ -18,6 +18,7 @@ services:
       - APP_TIME_UPDATE=30 # TODO: change to crone
       - APP_LOG_LEVEL=0 # Trace|Debug|Error|Warn|Info
       - APP_THREADS_POOL=10
+      - APP_TEST=on
     networks:
       - api.net
 

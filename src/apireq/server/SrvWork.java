@@ -4,18 +4,19 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+import apireq.Main;
 import apireq.api.GetApi;
 
 public class SrvWork{
 	
-	public static void http() throws IOException {
+	public static void http(Main core) throws IOException {
 		Thread run = new Thread(new Runnable() {
 			@Override
 			public void run() {
 				while(true){
 					try {
-						GetApi.api(apireq.Main.CONNECTION_TIMEOUT);
-						Thread.sleep(apireq.Main.WAITING_TIME*1000);
+						GetApi.api(core.GetConnectionTimeout(), core.GetURL());
+						Thread.sleep(core.GetWaiteTime()*1000);
 					} catch (IOException ex) {} catch (InterruptedException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -25,7 +26,7 @@ public class SrvWork{
 		});
 		run.start();
 		
-		ServerSocket ss = new ServerSocket(apireq.Main.PORT);
+		ServerSocket ss = new ServerSocket(core.GetPort());
         while (true) {
             Socket s = ss.accept();
             System.err.println("Client accepted");
